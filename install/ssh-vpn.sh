@@ -337,7 +337,7 @@ wget -q -O update "https://raw.githubusercontent.com/${GitUser}/autoscriptsvpn/m
 wget -q -O run-update "https://raw.githubusercontent.com/${GitUser}/autoscriptsvpn/main/update/run-update.sh"
 wget -q -O dns "https://raw.githubusercontent.com/${GitUser}/autoscriptsvpn/main/system/dns.sh"
 wget -q -O nf "https://raw.githubusercontent.com/${GitUser}/autoscriptsvpn/main/system/nf.sh"
-wget -q -O traffic "https://raw.githubusercontent.com/${GitUser}/autoscriptsvpn/main/traffic.sh"
+wget -q -O traffic "https://raw.githubusercontent.com/${GitUser}/autoscriptsvpn/main/menu/traffic.sh"
 wget -q -O log-cleaner "https://raw.githubusercontent.com/${GitUser}/autoscriptsvpn/main/clear-log.sh"
 wget -q -O xrayacc "https://raw.githubusercontent.com/${GitUser}/autoscriptsvpn/main/system/xrayacc.sh"
 wget -q -O limit-speed "https://raw.githubusercontent.com/${GitUser}/autoscriptsvpn/main/system/limit-speed.sh"
