@@ -43,6 +43,7 @@ fi
 # ADD USER VLESS WS
 function menu7 () {
 clear
+MYIP=$(wget -qO- ipv4.icanhazip.com)
 tls="$(cat ~/log-install.txt | grep -w "Vless Ws Tls" | cut -d: -f2|sed 's/ //g')"
 none="$(cat ~/log-install.txt | grep -w "Vless Ws None Tls" | cut -d: -f2|sed 's/ //g')"
 echo -e "\e[$line┌──────────────────────────────────────────────────────┐\e[m"
@@ -74,8 +75,8 @@ else
 sts=$bug_addr
 fi
 
-export exp=`date -d "$masaaktif days" +"%Y-%m-%d"`
-export harini=`date -d "0 days" +"%Y-%m-%d"`
+export exp=`date -d "$masaaktif days" +"%d-%m-%Y"`
+export harini=`date -d "0 days" +"%d-%m-%Y"`
 
 sed -i '/#xray-vless-tls$/a\#vls '"$user $exp $harini $uuid"'\
 },{"id": "'""$uuid""'","email": "'""$user""'"' /usr/local/etc/xray/vless.json
@@ -85,14 +86,17 @@ sed -i '/#xray-vless-nontls$/a\#vls '"$user $exp $harini $uuid"'\
 export vlesslink1="vless://${uuid}@${sts}${domain}:$tls?path=$patchtls&security=tls&encryption=none&host=${domain}&type=ws&sni=$sni#${user}$exp"
 export vlesslink2="vless://${uuid}@${sts}${domain}:$none?path=$patchnontls&encryption=none&host=$sni&type=ws#${user}$exp"
 export vlesslink3="vless://${uuid}@${sts}${domain}:$none?path=$patchnontls&encryption=none&host=maingame.com.my&type=ws#${user}$exp"
-export vlesslink4="vless://${uuid}@${sts}www.speedtest.net:$none?path=$patchnontls&encryption=none&host=${domain}&type=ws#${user}$exp"
-export vlesslink5="vless://${uuid}@${sts}cdn.who.int:$none?path=wss://${domain}$patchnontls&encryption=none&host=cdn.who.int&type=ws#${user}$exp"
+export vlesslink4="vless://${uuid}@${sts}${MYIP}:$none?path=$patchnontls&encryption=none&host=maingame.com.my&type=ws#${user}$exp"
+export vlesslink5="vless://${uuid}@${sts}www.speedtest.net:$none?path=$patchnontls&encryption=none&host=${domain}&type=ws#${user}$exp"
 export vlesslink6="vless://${uuid}@${sts}help.viu.com:$none?path=$patchnontls&encryption=none&host=${domain}&type=ws#${user}$exp"
 export vlesslink7="vless://${uuid}@${sts}${domain}:$tls?path=$patchtls&security=tls&encryption=none&host=playtv.unifi.com.my&type=ws&sni=playtv.unifi.com.my#${user}$exp"
-export vlesslink8="vless://${uuid}@${sts}cdn.who.int:$none?path=$patchnontls&encryption=none&host=cdn.who.int.${domain}&type=ws#${user}$exp"
-export vlesslink9="vless://${uuid}@${sts}$MYIP:$none?path=$patchnontls&encryption=none&host=maingame.com.my&type=ws#${user}$exp"
-export vlesslink10="vless://${uuid}@${sts}162.159.134.61:$none?path=$patchnontls&encryption=none&host=${domain}&type=ws#${user}$exp"
-export vlesslink11="vless://${uuid}@${sts}api.useinsider.com:$none?path=$patchnontls&encryption=none&host=${domain}&type=ws#${user}$exp"
+export vlesslink8="vless://${uuid}@${sts}yes.hate-me.eu.org:$none?path=$patchnontls&encryption=none&host=cdn.who.int.${domain}&type=ws#${user}$exp"
+export vlesslink9="vless://${uuid}@${sts}162.159.134.61:$none?path=$patchnontls&encryption=none&host=${domain}&type=ws#${user}$exp"
+export vlesslink10="vless://${uuid}@${sts}api.useinsider.com:$none?path=$patchnontls&encryption=none&host=${domain}&type=ws#${user}$exp"
+export vlesslink11="vless://${uuid}@${sts}${domain}:$tls?path=$patchtls&security=tls&encryption=none&host=${domain}&type=ws&sni=sso.pokemon.com&host#${user}$exp"
+export vlesslink12="vless://${uuid}@${sts}m.google.com.my.${domain}:$none?path=$patchnontls&encryption=none&host=api.instagram.com&type=ws#${user}$exp"
+export vlesslink13="vless://${uuid}@${sts}${domain}:$tls?path=$patchtls&security=tls&encryption=none&host=esports.pubgmobile.com.esports.mobilelegends.com&type=ws&sni=esports.pubgmobile.com.esports.mobilelegends.com#${user}$exp"
+
 
 systemctl restart xray@vless
 systemctl restart xray@vlessnone
@@ -120,9 +124,9 @@ echo -e "Link None TLS    : ${vlesslink2}"
 echo -e "\e[$line•────────────────•\e[m"
 echo -e "Link ${YLW}UMOBILE${NC}     : ${vlesslink3}"
 echo -e "\e[$line•────────────────•\e[m"
-echo -e "Link ${BLU}CELCOM${NC}      : ${vlesslink4}"
+echo -e "Link ${YLW}UMOBILE ALL${NC} : ${vlesslink4}"
 echo -e "\e[$line•────────────────•\e[m"
-echo -e "Link ${PLE}YES4g/5g${NC}    : ${vlesslink5}"
+echo -e "Link ${BLU}2 In One${NC}    : ${vlesslink5}"
 echo -e "\e[$line•────────────────•\e[m"
 echo -e "Link ${RED}MAXISTV${NC}     : ${vlesslink6}"
 echo -e "\e[$line•────────────────•\e[m"
@@ -130,11 +134,15 @@ echo -e "Link ${YLW}UNIFI${NC}       : ${vlesslink7}"
 echo -e "\e[$line•────────────────•\e[m"
 echo -e "Link ${PLE}YES4g/5g${NC}    : ${vlesslink8}"
 echo -e "\e[$line•────────────────•\e[m"
-echo -e "Link ${YLW}UMOBILEWRT${NC}  : ${vlesslink9}"
+echo -e "Link ${YLW}DiGi3Mb${NC}     : ${vlesslink9}"
 echo -e "\e[$line•────────────────•\e[m"
-echo -e "Link ${YLW}DiGi3Mb${NC}     : ${vlesslink10}"
+echo -e "Link ${YLW}DiGiAPN${NC}     : ${vlesslink10}"
 echo -e "\e[$line•────────────────•\e[m"
-echo -e "Link ${YLW}DiGiAPN${NC}     : ${vlesslink11}"
+echo -e "Link ${YLW}DiGi Poke${NC}   : ${vlesslink11}"
+echo -e "\e[$line•────────────────•\e[m"
+echo -e "Link ${YLW}DiGi Sosial${NC} : ${vlesslink12}"
+echo -e "\e[$line•────────────────•\e[m"
+echo -e "Link ${YLW}Yodoo Add On${NC}: ${vlesslink13}"
 echo -e "\e[$line•────────────────•\e[m"
 echo -e "\e[$line TLS QRcode\e[m"
 qrencode -t ansiutf8 "vless://${uuid}@${sts}${domain}:$tls?path=$patchtls&security=tls&encryption=none&host=${domain}&type=ws&sni=$sni#${user}"
@@ -151,6 +159,7 @@ vless-menu
 # TRIAL USER VLESS WS
 function menu8 () {
 clear
+MYIP=$(wget -qO- ipv4.icanhazip.com)
 tls="$(cat ~/log-install.txt | grep -w "Vless Ws Tls" | cut -d: -f2|sed 's/ //g')"
 none="$(cat ~/log-install.txt | grep -w "Vless Ws None Tls" | cut -d: -f2|sed 's/ //g')"
 echo -e "\e[$line┌──────────────────────────────────────────────────────┐\e[m"
@@ -159,7 +168,7 @@ echo -e "\e[$line└────────────────────
 
 # // Create Expried 
 export masaaktif="1"
-export exp=$(date -d "$masaaktif days" +"%Y-%m-%d")
+export exp=$(date -d "$masaaktif days" +%d-%m-%Y")
 
 # Make Random Username 
 export user=Trial`</dev/urandom tr -dc X-Z0-9 | head -c4`
@@ -179,7 +188,7 @@ else
 sts=$bug_addr
 fi
 
-export harini=`date -d "0 days" +"%Y-%m-%d"`
+export harini=`date -d "0 days" +%d-%m-%Y"`
 
 sed -i '/#xray-vless-tls$/a\#vls '"$user $exp $harini $uuid"'\
 },{"id": "'""$uuid""'","email": "'""$user""'"' /usr/local/etc/xray/vless.json
@@ -189,14 +198,16 @@ sed -i '/#xray-vless-nontls$/a\#vls '"$user $exp $harini $uuid"'\
 export vlesslink1="vless://${uuid}@${sts}${domain}:$tls?path=$patchtls&security=tls&encryption=none&host=${domain}&sni=$sni&type=ws#${user}$exp"
 export vlesslink2="vless://${uuid}@${sts}${domain}:$none?path=$patchnontls&encryption=none&host=$sni&type=ws#${user}$exp"
 export vlesslink3="vless://${uuid}@${sts}${domain}:$none?path=$patchnontls&encryption=none&host=maingame.com.my&type=ws#${user}$exp"
-export vlesslink4="vless://${uuid}@${sts}www.speedtest.net:$none?path=$patchnontls&encryption=none&host=${domain}&type=ws#${user}$exp"
-export vlesslink5="vless://${uuid}@${sts}cdn.who.int:$none?path=wss://${domain}$patchnontls&encryption=none&host=cdn.who.int&type=ws#${user}$exp"
+export vlesslink4="vless://${uuid}@${sts}${MYIP}:$none?path=$patchnontls&encryption=none&host=maingame.com.my&type=ws#${user}$exp"
+export vlesslink5="vless://${uuid}@${sts}www.speedtest.net:$none?path=$patchnontls&encryption=none&host=${domain}&type=ws#${user}$exp"
 export vlesslink6="vless://${uuid}@${sts}help.viu.com:$none?path=$patchnontls&encryption=none&host=${domain}&type=ws#${user}$exp"
-export vlesslink7="vless://${uuid}@${sts}${domain}:$tls?path=$patchtls&security=tls&encryption=none&host=playtv.unifi.com.my&sni=playtv.unifi.com.my&type=ws#${user}$exp"
-export vlesslink8="vless://${uuid}@${sts}cdn.who.int:$none?path=$patchnontls&encryption=none&host=cdn.who.int.${domain}&type=ws#${user}$exp"
-export vlesslink9="vless://${uuid}@${sts}$MYIP:$none?path=$patchnontls&encryption=none&host=maingame.com.my&type=ws#${user}$exp"
-export vlesslink10="vless://${uuid}@${sts}162.159.134.61:$none?path=$patchnontls&encryption=none&host=${domain}&type=ws#${user}$exp"
-export vlesslink11="vless://${uuid}@${sts}api.useinsider.com:$none?path=$patchnontls&encryption=none&host=${domain}&type=ws#${user}$exp"
+export vlesslink7="vless://${uuid}@${sts}${domain}:$tls?path=$patchtls&security=tls&encryption=none&host=playtv.unifi.com.my&type=ws&sni=playtv.unifi.com.my#${user}$exp"
+export vlesslink8="vless://${uuid}@${sts}yes.hate-me.eu.org:$none?path=$patchnontls&encryption=none&host=cdn.who.int.${domain}&type=ws#${user}$exp"
+export vlesslink9="vless://${uuid}@${sts}162.159.134.61:$none?path=$patchnontls&encryption=none&host=${domain}&type=ws#${user}$exp"
+export vlesslink10="vless://${uuid}@${sts}api.useinsider.com:$none?path=$patchnontls&encryption=none&host=${domain}&type=ws#${user}$exp"
+export vlesslink11="vless://${uuid}@${sts}${domain}:$tls?path=$patchtls&security=tls&encryption=none&host=${domain}&type=ws&sni=sso.pokemon.com&host#${user}$exp"
+export vlesslink12="vless://${uuid}@${sts}m.google.com.my.${domain}:$none?path=$patchnontls&encryption=none&host=api.instagram.com&type=ws#${user}$exp"
+export vlesslink13="vless://${uuid}@${sts}${domain}:$tls?path=$patchtls&security=tls&encryption=none&host=esports.pubgmobile.com.esports.mobilelegends.com&type=ws&sni=esports.pubgmobile.com.esports.mobilelegends.com#${user}$exp"
 
 systemctl restart xray@vless
 systemctl restart xray@vlessnone
@@ -224,9 +235,9 @@ echo -e "Link None TLS    : ${vlesslink2}"
 echo -e "\e[$line•────────────────•\e[m"
 echo -e "Link ${YLW}UMOBILE${NC}     : ${vlesslink3}"
 echo -e "\e[$line•────────────────•\e[m"
-echo -e "Link ${BLU}CELCOM${NC}      : ${vlesslink4}"
+echo -e "Link ${YLW}UMOBILE ALL${NC} : ${vlesslink4}"
 echo -e "\e[$line•────────────────•\e[m"
-echo -e "Link ${PLE}YES4g/5g${NC}    : ${vlesslink5}"
+echo -e "Link ${BLU}2 In One${NC}    : ${vlesslink5}"
 echo -e "\e[$line•────────────────•\e[m"
 echo -e "Link ${RED}MAXISTV${NC}     : ${vlesslink6}"
 echo -e "\e[$line•────────────────•\e[m"
@@ -234,11 +245,15 @@ echo -e "Link ${YLW}UNIFI${NC}       : ${vlesslink7}"
 echo -e "\e[$line•────────────────•\e[m"
 echo -e "Link ${PLE}YES4g/5g${NC}    : ${vlesslink8}"
 echo -e "\e[$line•────────────────•\e[m"
-echo -e "Link ${YLW}UMOBILEWRT${NC}  : ${vlesslink9}"
+echo -e "Link ${YLW}DiGi3Mb${NC}     : ${vlesslink9}"
 echo -e "\e[$line•────────────────•\e[m"
-echo -e "Link ${YLW}DiGi3Mb${NC}     : ${vlesslink10}"
+echo -e "Link ${YLW}DiGiAPN${NC}     : ${vlesslink10}"
 echo -e "\e[$line•────────────────•\e[m"
-echo -e "Link ${YLW}DiGiAPN${NC}     : ${vlesslink11}"
+echo -e "Link ${YLW}DiGi Poke${NC}   : ${vlesslink11}"
+echo -e "\e[$line•────────────────•\e[m"
+echo -e "Link ${YLW}DiGi Sosial${NC} : ${vlesslink12}"
+echo -e "\e[$line•────────────────•\e[m"
+echo -e "Link ${YLW}Yodoo Add On${NC}: ${vlesslink13}"
 echo -e "\e[$line•────────────────•\e[m"
 echo -e "\e[$line TLS QRcode\e[m"
 qrencode -t ansiutf8 "vless://${uuid}@${sts}${domain}:$tls?path=$patchtls&security=tls&encryption=none&host=${domain}&sni=$sni&type=ws#${user}"
@@ -329,12 +344,12 @@ export harini=$(grep -E "^#vls " "/usr/local/etc/xray/vless.json" | cut -d ' ' -
 export uuid=$(grep -E "^#vls " "/usr/local/etc/xray/vless.json" | cut -d ' ' -f 5 | sed -n "${CLIENT_NUMBER}"p)
 export user=$(grep -E "^#vls " "/usr/local/etc/xray/vless.json" | cut -d ' ' -f 2 | sed -n "${CLIENT_NUMBER}"p)
 export exp=$(grep -E "^#vls " "/usr/local/etc/xray/vless.json" | cut -d ' ' -f 3 | sed -n "${CLIENT_NUMBER}"p)
-export now=$(date +%Y-%m-%d)
+export now=$(date +%d-%m-%Y")
 export d1=$(date -d "$exp" +%s)
 export d2=$(date -d "$now" +%s)
 export exp2=$(( (d1 - d2) / 86400 ))
 export exp3=$(($exp2 + $masaaktif))
-export exp4=`date -d "$exp3 days" +"%Y-%m-%d"`
+export exp4=`date -d "$exp3 days" +%d-%m-%Y"`
 
 sed -i "s/#vls $user $exp $harini $uuid/#vls $user $exp4 $harini $uuid/g" /usr/local/etc/xray/vless.json
 sed -i "s/#vls $user $exp $harini $uuid/#vls $user $exp4 $harini $uuid/g" /usr/local/etc/xray/vlessnone.json
@@ -358,6 +373,7 @@ vless-menu
 # show user vless ws
 function menu11 () {
 clear
+MYIP=$(wget -qO- ipv4.icanhazip.com)
 tls="$(cat ~/log-install.txt | grep -w "Vless Ws Tls" | cut -d: -f2|sed 's/ //g')"
 none="$(cat ~/log-install.txt | grep -w "Vless Ws None Tls" | cut -d: -f2|sed 's/ //g')"
 NUMBER_OF_CLIENTS=$(grep -c -E "^#vls " "/usr/local/etc/xray/vless.json")
@@ -393,14 +409,16 @@ export uuid=$(grep -E "^#vls " "/usr/local/etc/xray/vless.json" | cut -d ' ' -f 
 export vlesslink1="vless://${uuid}@${sts}${domain}:$tls?path=$patchtls&security=tls&encryption=none&type=ws&sni=$sni&type=ws#${user}$exp"
 export vlesslink2="vless://${uuid}@${sts}${domain}:$none?path=$patchnontls&encryption=none&host=$sni&type=ws#${user}$exp"
 export vlesslink3="vless://${uuid}@${sts}${domain}:$none?path=$patchnontls&encryption=none&host=maingame.com.my&type=ws#${user}$exp"
-export vlesslink4="vless://${uuid}@${sts}www.speedtest.net:$none?path=$patchnontls&encryption=none&host=${domain}&type=ws#${user}$exp"
-export vlesslink5="vless://${uuid}@${sts}cdn.who.int:$none?path=wss://${domain}$patchnontls&encryption=none&host=cdn.who.int&type=ws#${user}$exp"
+export vlesslink4="vless://${uuid}@${sts}${MYIP}:$none?path=$patchnontls&encryption=none&host=maingame.com.my&type=ws#${user}$exp"
+export vlesslink5="vless://${uuid}@${sts}www.speedtest.net:$none?path=$patchnontls&encryption=none&host=${domain}&type=ws#${user}$exp"
 export vlesslink6="vless://${uuid}@${sts}help.viu.com:$none?path=$patchnontls&encryption=none&host=${domain}&type=ws#${user}$exp"
-export vlesslink7="vless://${uuid}@${sts}${domain}:$tls?path=$patchtls&security=tls&encryption=none&host=playtv.unifi.com.my&sni=playtv.unifi.com.my&type=ws#${user}$exp"
-export vlesslink8="vless://${uuid}@${sts}cdn.who.int:$none?path=$patchnontls&encryption=none&host=cdn.who.int.${domain}&type=ws#${user}$exp"
-export vlesslink9="vless://${uuid}@${sts}$MYIP:$none?path=$patchnontls&encryption=none&host=maingame.com.my&type=ws#${user}$exp"
-export vlesslink10="vless://${uuid}@${sts}162.159.134.61:$none?path=$patchnontls&encryption=none&host=${domain}&type=ws#${user}$exp"
-export vlesslink11="vless://${uuid}@${sts}api.useinsider.com:$none?path=$patchnontls&encryption=none&host=${domain}&type=ws#${user}$exp"
+export vlesslink7="vless://${uuid}@${sts}${domain}:$tls?path=$patchtls&security=tls&encryption=none&host=playtv.unifi.com.my&type=ws&sni=playtv.unifi.com.my#${user}$exp"
+export vlesslink8="vless://${uuid}@${sts}yes.hate-me.eu.org:$none?path=$patchnontls&encryption=none&host=cdn.who.int.${domain}&type=ws#${user}$exp"
+export vlesslink9="vless://${uuid}@${sts}162.159.134.61:$none?path=$patchnontls&encryption=none&host=${domain}&type=ws#${user}$exp"
+export vlesslink10="vless://${uuid}@${sts}api.useinsider.com:$none?path=$patchnontls&encryption=none&host=${domain}&type=ws#${user}$exp"
+export vlesslink11="vless://${uuid}@${sts}${domain}:$tls?path=$patchtls&security=tls&encryption=none&host=${domain}&type=ws&sni=sso.pokemon.com&host#${user}$exp"
+export vlesslink12="vless://${uuid}@${sts}m.google.com.my.${domain}:$none?path=$patchnontls&encryption=none&host=api.instagram.com&type=ws#${user}$exp"
+export vlesslink13="vless://${uuid}@${sts}${domain}:$tls?path=$patchtls&security=tls&encryption=none&host=esports.pubgmobile.com.esports.mobilelegends.com&type=ws&sni=esports.pubgmobile.com.esports.mobilelegends.com#${user}$exp"
 
 
 clear
@@ -426,9 +444,9 @@ echo -e "Link None TLS    : ${vlesslink2}"
 echo -e "\e[$line•────────────────•\e[m"
 echo -e "Link ${YLW}UMOBILE${NC}     : ${vlesslink3}"
 echo -e "\e[$line•────────────────•\e[m"
-echo -e "Link ${BLU}CELCOM${NC}      : ${vlesslink4}"
+echo -e "Link ${YLW}UMOBILE ALL${NC} : ${vlesslink4}"
 echo -e "\e[$line•────────────────•\e[m"
-echo -e "Link ${PLE}YES4g/5g${NC}    : ${vlesslink5}"
+echo -e "Link ${BLU}2 In One${NC}    : ${vlesslink5}"
 echo -e "\e[$line•────────────────•\e[m"
 echo -e "Link ${RED}MAXISTV${NC}     : ${vlesslink6}"
 echo -e "\e[$line•────────────────•\e[m"
@@ -436,11 +454,15 @@ echo -e "Link ${YLW}UNIFI${NC}       : ${vlesslink7}"
 echo -e "\e[$line•────────────────•\e[m"
 echo -e "Link ${PLE}YES4g/5g${NC}    : ${vlesslink8}"
 echo -e "\e[$line•────────────────•\e[m"
-echo -e "Link ${YLW}UMOBILEWRT${NC}  : ${vlesslink9}"
+echo -e "Link ${YLW}DiGi3Mb${NC}     : ${vlesslink9}"
 echo -e "\e[$line•────────────────•\e[m"
-echo -e "Link ${YLW}DiGi3Mb${NC}     : ${vlesslink10}"
+echo -e "Link ${YLW}DiGiAPN${NC}     : ${vlesslink10}"
 echo -e "\e[$line•────────────────•\e[m"
-echo -e "Link ${YLW}DiGiAPN${NC}     : ${vlesslink11}"
+echo -e "Link ${YLW}DiGi Poke${NC}   : ${vlesslink11}"
+echo -e "\e[$line•────────────────•\e[m"
+echo -e "Link ${YLW}DiGi Sosial${NC} : ${vlesslink12}"
+echo -e "\e[$line•────────────────•\e[m"
+echo -e "Link ${YLW}Yodoo Add On${NC}: ${vlesslink13}"
 echo -e "\e[$line•────────────────•\e[m"
 echo -e "\e[$line TLS QRcode\e[m"
 qrencode -t ansiutf8 "vless://${uuid}@${sts}${domain}:$tls?path=$patchtls&security=tls&encryption=none&type=ws&sni=$sni&type=ws#${user}"
@@ -499,6 +521,7 @@ vless-menu
 # CREATE USER VLESS XTLS
 function menu13 () {
 clear
+MYIP=$(wget -qO- ipv4.icanhazip.com)
 xtls="$(cat ~/log-install.txt | grep -w "Vless Tcp Xtls" | cut -d: -f2|sed 's/ //g')"
 echo -e "\e[$line┌──────────────────────────────────────────────────────┐\e[m"
 echo -e "\e[$line│\e[$box             CREATE USER XRAY VLESS XTLS              \e[$line│\e[m"
@@ -526,15 +549,15 @@ else
 sts=$bug_addr
 fi
 
-export exp=`date -d "$masaaktif days" +"%Y-%m-%d"`
-export harini=`date -d "0 days" +"%Y-%m-%d"`
+export exp=`date -d "$masaaktif days" +%d-%m-%Y"`
+export harini=`date -d "0 days" +%d-%m-%Y"`
 
 sed -i '/#xray-vless-xtls$/a\#vxtls '"$user $exp $harini $uuid"'\
 },{"id": "'""$uuid""'","flow": "'""xtls-rprx-direct""'","level": '"0"',"email": "'""$user""'"' /usr/local/etc/xray/config.json
 
 export vlesslink1="vless://${uuid}@${sts}${domain}:$xtls?security=xtls&encryption=none&headerType=none&type=tcp&flow=xtls-rprx-direct&sni=$sni#${user}"
 export vlesslink2="vless://${uuid}@${sts}${domain}:$xtls?security=xtls&encryption=none&headerType=none&type=tcp&flow=xtls-rprx-splice&sni=$sni#${user}"
-export vlesslink3="vless://${uuid}@${sts}${domain}:$xtls?security=xtls&encryption=none&headerType=none&type=tcp&flow=xtls-rprx-direct&sni=maingame.com.my#${user}$exp"
+export vlesslink3="vless://${uuid}@${sts}${MYIP}:$xtls?security=xtls&encryption=none&headerType=none&type=tcp&flow=xtls-rprx-direct&sni=maingame.com.my#${user}$exp"
 export vlesslink4="vless://${uuid}@${sts}${domain}:$xtls?security=xtls&encryption=none&headerType=none&type=tcp&flow=xtls-rprx-direct&sni=open.spotify.com#${user}$exp"
 
 systemctl restart xray.service
@@ -577,6 +600,7 @@ vless-menu
 # TRIAL USER VLESS XTLS
 function menu14 () {
 clear
+MYIP=$(wget -qO- ipv4.icanhazip.com)
 xtls="$(cat ~/log-install.txt | grep -w "Vless Tcp Xtls" | cut -d: -f2|sed 's/ //g')"
 echo -e "\e[$line┌──────────────────────────────────────────────────────┐\e[m"
 echo -e "\e[$line│\e[$box             TRIAL USER XRAY VLESS XTLS               \e[$line│\e[m"
@@ -584,7 +608,7 @@ echo -e "\e[$line└────────────────────
 
 # // Create Expried 
 export masaaktif="1"
-export exp=$(date -d "$masaaktif days" +"%Y-%m-%d")
+export exp=$(date -d "$masaaktif days" +%d-%m-%Y")
 
 # // Make Random Username 
 export user=Trial`</dev/urandom tr -dc X-Z0-9 | head -c4`
@@ -601,13 +625,15 @@ else
 sts=$bug_addr
 fi
 
-export harini=`date -d "0 days" +"%Y-%m-%d"`
+export harini=`date -d "0 days" +%d-%m-%Y"`
 
 sed -i '/#xray-vless-xtls$/a\#vxtls '"$user $exp $harini $uuid"'\
 },{"id": "'""$uuid""'","flow": "'""xtls-rprx-direct""'","level": '"0"',"email": "'""$user""'"' /usr/local/etc/xray/config.json
 
 export vlesslink1="vless://${uuid}@${sts}${domain}:$xtls?security=xtls&encryption=none&headerType=none&type=tcp&flow=xtls-rprx-direct&sni=$sni#${user}"
 export vlesslink2="vless://${uuid}@${sts}${domain}:$xtls?security=xtls&encryption=none&headerType=none&type=tcp&flow=xtls-rprx-splice&sni=$sni#${user}"
+export vlesslink3="vless://${uuid}@${sts}${MYIP}:$xtls?security=xtls&encryption=none&headerType=none&type=tcp&flow=xtls-rprx-direct&sni=maingame.com.my#${user}$exp"
+export vlesslink4="vless://${uuid}@${sts}${domain}:$xtls?security=xtls&encryption=none&headerType=none&type=tcp&flow=xtls-rprx-direct&sni=open.spotify.com#${user}$exp"
 
 systemctl restart xray.service
 
@@ -629,6 +655,10 @@ echo -e "\e[$line•────────────────•\e[m"
 echo -e "Link Xtls Direct  : ${vlesslink1}"
 echo -e "\e[$line•────────────────•\e[m"
 echo -e "Link Xtls Splice  : ${vlesslink2}"
+echo -e "\e[$line•────────────────•\e[m"
+echo -e "Link ${YLW}UMOBILE${NC}     : ${vlesslink3}"
+echo -e "\e[$line•────────────────•\e[m"
+echo -e "Link ${BLU}BeOne${NC}       : ${vlesslink4}"
 echo -e "\e[$line•────────────────•\e[m"
 echo -e "\e[$line Direct QRcode\e[m"
 qrencode -t ansiutf8 "vless://${uuid}@${sts}${domain}:$xtls?security=xtls&encryption=none&headerType=none&type=tcp&flow=xtls-rprx-direct&sni=$sni#${user}"
@@ -721,12 +751,12 @@ export harini=$(grep -E "^#vxtls " "/usr/local/etc/xray/config.json" | cut -d ' 
 export uuid=$(grep -E "^#vxtls " "/usr/local/etc/xray/config.json" | cut -d ' ' -f 5 | sed -n "${CLIENT_NUMBER}"p)
 export user=$(grep -E "^#vxtls " "/usr/local/etc/xray/config.json" | cut -d ' ' -f 2 | sed -n "${CLIENT_NUMBER}"p)
 export exp=$(grep -E "^#vxtls " "/usr/local/etc/xray/config.json" | cut -d ' ' -f 3 | sed -n "${CLIENT_NUMBER}"p)
-export now=$(date +%Y-%m-%d)
+export now=$(date +%d-%m-%Y")
 export d1=$(date -d "$exp" +%s)
 export d2=$(date -d "$now" +%s)
 export exp2=$(( (d1 - d2) / 86400 ))
 export exp3=$(($exp2 + $masaaktif))
-export exp4=`date -d "$exp3 days" +"%Y-%m-%d"`
+export exp4=`date -d "$exp3 days" +%d-%m-%Y"`
 
 sed -i "s/#vxtls $user $exp $harini $uuid/#vxtls $user $exp4 $harini $uuid/g" /usr/local/etc/xray/config.json
 
@@ -748,6 +778,7 @@ vless-menu
 #SHOW VLESS XTLS
 function menu17 () {
 clear
+MYIP=$(wget -qO- ipv4.icanhazip.com)
 xtls="$(cat ~/log-install.txt | grep -w "Vless Tcp Xtls" | cut -d: -f2|sed 's/ //g')"
 NUMBER_OF_CLIENTS=$(grep -c -E "^#vxtls " "/usr/local/etc/xray/config.json")
 	if [[ ${NUMBER_OF_CLIENTS} == '0' ]]; then
@@ -780,6 +811,8 @@ export uuid=$(grep -E "^#vxtls " "/usr/local/etc/xray/config.json" | cut -d ' ' 
 
 export vlesslink1="vless://${uuid}@${domain}:$xtls?security=xtls&encryption=none&headerType=none&type=tcp&flow=xtls-rprx-direct&sni=bug.com#${user}"
 export vlesslink2="vless://${uuid}@${domain}:$xtls?security=xtls&encryption=none&headerType=none&type=tcp&flow=xtls-rprx-splice&sni=bug.com#${user}"
+export vlesslink3="vless://${uuid}@${sts}${MYIP}:$xtls?security=xtls&encryption=none&headerType=none&type=tcp&flow=xtls-rprx-direct&sni=maingame.com.my#${user}$exp"
+export vlesslink4="vless://${uuid}@${sts}${domain}:$xtls?security=xtls&encryption=none&headerType=none&type=tcp&flow=xtls-rprx-direct&sni=open.spotify.com#${user}$exp"
 
 clear
 echo -e ""
@@ -800,6 +833,10 @@ echo -e "Link Xtls Direct : ${vlesslink1}"
 echo -e "\e[$line•────────────────•\e[m"
 echo -e "Link Xtls Splice : ${vlesslink2}"
 echo -e "\e[$line•────────────────•\e[m"
+echo -e "Link ${YLW}UMOBILE${NC}     : ${vlesslink3}"
+echo -e "\e[$line•────────────────•\e[m"
+echo -e "Link ${BLU}BeOne${NC}       : ${vlesslink4}"
+echo -e "\e[$line•────────────────•\e[m
 echo -e "\e[$line Direct QRcode\e[m"
 qrencode -t ansiutf8 "vless://${uuid}@${domain}:$xtls?security=xtls&encryption=none&headerType=none&type=tcp&flow=xtls-rprx-direct&sni=bug.com#${user}"
 echo -e "\e[$line Splice QRcode\e[m"
