@@ -46,12 +46,6 @@ export wsdropbear="$(cat ~/log-install.txt | grep -w "Websocket SSH(HTTP)" | cut
 export wsstunnel="$(cat ~/log-install.txt | grep -w "Websocket SSL(HTTPS)" | cut -d: -f2|sed 's/ //g')"
 export wsovpn="$(cat ~/log-install.txt | grep -w "Websocket OpenVPN" | cut -d: -f2|sed 's/ //g')"
 
-sleep 1
-echo Ping Host
-echo Check Acces...
-sleep 0.5
-echo Permission Accepted
-clear
 sleep 0.5
 echo Create Acc: $Login
 sleep 0.5

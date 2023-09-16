@@ -34,18 +34,11 @@ ohpdrop="$(cat ~/log-install.txt | grep -w "OHP Dropbear" | cut -d: -f2|sed 's/ 
 wsdropbear="$(cat ~/log-install.txt | grep -w "Websocket SSH(HTTP)" | cut -d: -f2|sed 's/ //g')"
 wsstunnel="$(cat ~/log-install.txt | grep -w "Websocket SSL(HTTPS)" | cut -d: -f2|sed 's/ //g')"
 wsovpn="$(cat ~/log-install.txt | grep -w "Websocket OpenVPN" | cut -d: -f2|sed 's/ //g')"
-export dnsdomain=$(cat /etc/xray/dns
-export dnskey=$(cat /etc/slowdns/server.pub)
 sleep 1
 Login=trial`</dev/urandom tr -dc X-Z0-9 | head -c4`
 hari="1"
 Pass=1
-echo Ping Host
-echo Check Acces...
-sleep 0.5
-echo Permission Accepted
-clear
-sleep 0.5
+
 echo Create Acc: $Login
 sleep 0.5
 echo Setting Password: $Pass
@@ -63,8 +56,6 @@ echo -e "\e[$line└────────────────────
 echo -e "Username       : $Login"
 echo -e "Password       : $Pass"
 echo -e "\e[$line•──────────────────────────────────────────────────────•\e[m"
-echo -e "NS Slowdns     : $dnsdomain"
-echo -e "DNS PubKey     : $dnskey"
 echo -e "Domain         : $domain"
 echo -e "IP/Host        : $MYIP"
 echo -e "OpenSSH        : 22"
