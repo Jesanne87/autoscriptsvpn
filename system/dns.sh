@@ -1,16 +1,6 @@
 #!/bin/bash
-clear -x
-# LINE COLOUR
-line=$(cat /etc/line)
-# TEXT COLOUR BELOW
-below=$(cat /etc/below)
-# BACKGROUND TEXT COLOUR
-back_text=$(cat /etc/back)
-# NUMBER COLOUR
-number=$(cat /etc/number)
-# TEXT ON BOX COLOUR
-box=$(cat /etc/box)
-#!/bin/bash
+#clear -x
+
 NC='\e[0m'
 DEFBOLD='\e[39;1m'
 RB='\e[31;1m'
@@ -21,9 +11,9 @@ MB='\e[35;1m'
 CB='\e[35;1m'
 WB='\e[37;1m'
 clear
-echo -e "${line}————————————————————————————————————————————————————————${NC}"
+echo -e "\e[31;1m————————————————————————————————————————————————————————${NC}"
 echo -e "               ${WB}----- [ DNS Setting ] -----${NC}              "
-echo -e "${line}————————————————————————————————————————————————————————${NC}"
+echo -e "\e[31;1m————————————————————————————————————————————————————————${NC}"
 udns=$(cat /user/current)
 echo -e ""
 echo -e "  ${YB}Current DNS${NC} : ${GB}$udns${WB}"
@@ -57,7 +47,7 @@ systemctl restart systemd-resolved
 systemctl restart NetworkManager
 echo "Google DNS" > /user/current
 echo -e "${YB}Setup Completed${NC}"
-sleep 1.5 ; clear ; changer ;;
+sleep 1.5 ; clear ; dns ;;
 2) clear ;
 echo -e " "
 echo -e "${YB}Setup Cloudflare DNS${NC}"
@@ -72,7 +62,7 @@ systemctl restart systemd-resolved
 systemctl restart NetworkManager
 echo "Cloudflare DNS" > /user/current
 echo -e "${YB}Setup Completed${NC}"
-sleep 1.5 ; clear ; changer ;;
+sleep 1.5 ; clear ; dns ;;
 3) clear ;
 echo -e " "
 echo -e "${YB}Setup Cisco OpenDNS${NC}"
@@ -87,7 +77,7 @@ systemctl restart systemd-resolved
 systemctl restart NetworkManager
 echo "Cisco OpenDNS" > /user/current
 echo -e "${YB}Setup Completed${NC}"
-sleep 1.5 ; clear ; changer ;;
+sleep 1.5 ; clear ; dns ;;
 4) clear ;
 echo -e " "
 echo -e "${YB}Setup Quad9 DNS${NC}"
@@ -102,7 +92,7 @@ systemctl restart systemd-resolved
 systemctl restart NetworkManager
 echo "Quad9 DNS" > /user/current
 echo -e "${YB}Setup Completed${NC}"
-sleep 1.5 ; clear ; changer ;;
+sleep 1.5 ; clear ; dns ;;
 5) clear ;
 echo -e " "
 echo -e "${YB}Setup Level 3 DNS${NC}"
@@ -117,7 +107,7 @@ systemctl restart systemd-resolved
 systemctl restart NetworkManager
 echo "Level 3 DNS" > /user/current
 echo -e "${YB}Setup Completed${NC}"
-sleep 1.5 ; clear ; changer ;;
+sleep 1.5 ; clear ; dns ;;
 6) clear ;
 echo -e " "
 echo -e "${YB}Setup Freenom World DNS${NC}"
@@ -132,7 +122,7 @@ systemctl restart systemd-resolved
 systemctl restart NetworkManager
 echo "Freenom World DNS" > /user/current
 echo -e "${YB}Setup Completed${NC}"
-sleep 1.5 ; clear ; changer ;;
+sleep 1.5 ; clear ; dns ;;
 7) clear ;
 echo -e " "
 echo -e "${YB}Setup Neustar DNS${NC}"
@@ -147,7 +137,7 @@ systemctl restart systemd-resolved
 systemctl restart NetworkManager
 echo "Neustar DNS" > /user/current
 echo -e "${YB}Setup Completed${NC}"
-sleep 1.5 ; clear ; changer ;;
+sleep 1.5 ; clear ; dns ;;
 8) clear ;
 echo -e " "
 echo -e "${YB}Setup AdGuard DNS${NC}"
@@ -162,7 +152,7 @@ systemctl restart systemd-resolved
 systemctl restart NetworkManager
 echo "AdGuard DNS" > /user/current
 echo -e "${YB}Setup Completed${NC}"
-sleep 1.5 ; clear ; changer ;;
+sleep 1.5 ; clear ; dns ;;
 9) clear ;
 echo -e " "
 read -p "Please Insert Custom DNS (IPv4 Only): " custom
@@ -185,7 +175,7 @@ systemctl restart systemd-resolved
 systemctl restart NetworkManager
 echo "Custom DNS" > /user/current
 echo -e "${YB}Setup Completed${NC}"
-sleep 1.5 ; clear ; changer ;;
+sleep 1.5 ; clear ; dns ;;
 10) clear ; menu ;;
-*) echo -e "${YB}Please enter an correct number${NC}" ; sleep 1 ; system ;;
+*) echo -e "${YB}Please enter an correct number${NC}" ; sleep 1 ; dns ;;
 esac
