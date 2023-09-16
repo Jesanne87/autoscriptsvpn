@@ -4,7 +4,6 @@
 <p align="center">
 <a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.herokuapp.com?font=%09%F0%9D%94%90%F0%9D%94%9E%F0%9D%94%B1%F0%9D%94%A5+%F0%9D%94%89%F0%9D%94%AF%F0%9D%94%9E%F0%9D%94%A8%F0%9D%94%B1%F0%9D%94%B2%F0%9D%94%AF&weight=800&size=32&duration=0.1&pause=1&color=F7CD1FFB&center=true&width=435&lines=%F0%9F%85%B9%F0%9F%86%82%F0%9F%85%BF%F0%9F%85%B7%F0%9F%85%B0%F0%9F%85%BD%F0%9F%86%83%F0%9F%85%BE%F0%9F%85%BC" alt="Typing SVG" /></a>
 
-## Register IP (PM your username & IP):<a href="https://t.me/jsPhantom" target=”_blank”><img src="https://img.shields.io/static/v1?style=for-the-badge&logo=Telegram&label=Telegram&message=Click%20Here&color=blue"></a><br>
 
 ## Update & Upgrade First Your VPS for Debian 10 & 11
 
