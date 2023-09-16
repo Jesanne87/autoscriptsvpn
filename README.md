@@ -30,6 +30,5 @@ wget https://raw.githubusercontent.com/Jesanne87/Root-Access/main/rootpass.sh &&
 sysctl -w net.ipv6.conf.all.disable_ipv6=1 && sysctl -w net.ipv6.conf.default.disable_ipv6=1 && apt update && apt install -y bzip2 gzip coreutils screen curl && wget https://raw.githubusercontent.com/Jesanne87/simple/main/setup.sh && chmod +x setup.sh && sed -i -e 's/\r$//' setup.sh && screen -S setup ./setup.sh
 
  ```
- <p align="center">
-<img src="https://github.com/Jesanne87/examples/blob/main/Untitled%20design.png?raw=true)?r=82s" width="600" alt="Ok"/></a></p>
+
 # Just for fun script!! Friendly User Panel
