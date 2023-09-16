@@ -168,7 +168,7 @@ echo -e "\e[$line└────────────────────
 
 # // Create Expried 
 export masaaktif="1"
-export exp=$(date -d "$masaaktif days" +%d-%m-%Y")
+export exp=$(date -d "$masaaktif days" +"%d-%m-%Y")
 
 # Make Random Username 
 export user=Trial`</dev/urandom tr -dc X-Z0-9 | head -c4`
@@ -188,7 +188,7 @@ else
 sts=$bug_addr
 fi
 
-export harini=`date -d "0 days" +%d-%m-%Y"`
+export harini=`date -d "0 days" +"%d-%m-%Y"`
 
 sed -i '/#xray-vless-tls$/a\#vls '"$user $exp $harini $uuid"'\
 },{"id": "'""$uuid""'","email": "'""$user""'"' /usr/local/etc/xray/vless.json
@@ -344,12 +344,12 @@ export harini=$(grep -E "^#vls " "/usr/local/etc/xray/vless.json" | cut -d ' ' -
 export uuid=$(grep -E "^#vls " "/usr/local/etc/xray/vless.json" | cut -d ' ' -f 5 | sed -n "${CLIENT_NUMBER}"p)
 export user=$(grep -E "^#vls " "/usr/local/etc/xray/vless.json" | cut -d ' ' -f 2 | sed -n "${CLIENT_NUMBER}"p)
 export exp=$(grep -E "^#vls " "/usr/local/etc/xray/vless.json" | cut -d ' ' -f 3 | sed -n "${CLIENT_NUMBER}"p)
-export now=$(date +%d-%m-%Y")
+export now=$(date +%d-%m-%Y)
 export d1=$(date -d "$exp" +%s)
 export d2=$(date -d "$now" +%s)
 export exp2=$(( (d1 - d2) / 86400 ))
 export exp3=$(($exp2 + $masaaktif))
-export exp4=`date -d "$exp3 days" +%d-%m-%Y"`
+export exp4=`date -d "$exp3 days" +"%d-%m-%Y"`
 
 sed -i "s/#vls $user $exp $harini $uuid/#vls $user $exp4 $harini $uuid/g" /usr/local/etc/xray/vless.json
 sed -i "s/#vls $user $exp $harini $uuid/#vls $user $exp4 $harini $uuid/g" /usr/local/etc/xray/vlessnone.json
@@ -549,8 +549,8 @@ else
 sts=$bug_addr
 fi
 
-export exp=`date -d "$masaaktif days" +%d-%m-%Y"`
-export harini=`date -d "0 days" +%d-%m-%Y"`
+export exp=`date -d "$masaaktif days" +"%d-%m-%Y"`
+export harini=`date -d "0 days" +"%Y-%m-%d"`
 
 sed -i '/#xray-vless-xtls$/a\#vxtls '"$user $exp $harini $uuid"'\
 },{"id": "'""$uuid""'","flow": "'""xtls-rprx-direct""'","level": '"0"',"email": "'""$user""'"' /usr/local/etc/xray/config.json
@@ -608,7 +608,7 @@ echo -e "\e[$line└────────────────────
 
 # // Create Expried 
 export masaaktif="1"
-export exp=$(date -d "$masaaktif days" +%d-%m-%Y")
+export exp=$(date -d "$masaaktif days" +"%d-%m-%Y")
 
 # // Make Random Username 
 export user=Trial`</dev/urandom tr -dc X-Z0-9 | head -c4`
@@ -625,7 +625,7 @@ else
 sts=$bug_addr
 fi
 
-export harini=`date -d "0 days" +%d-%m-%Y"`
+export harini=`date -d "0 days" +"%d-%m-%Y"`
 
 sed -i '/#xray-vless-xtls$/a\#vxtls '"$user $exp $harini $uuid"'\
 },{"id": "'""$uuid""'","flow": "'""xtls-rprx-direct""'","level": '"0"',"email": "'""$user""'"' /usr/local/etc/xray/config.json
@@ -751,12 +751,12 @@ export harini=$(grep -E "^#vxtls " "/usr/local/etc/xray/config.json" | cut -d ' 
 export uuid=$(grep -E "^#vxtls " "/usr/local/etc/xray/config.json" | cut -d ' ' -f 5 | sed -n "${CLIENT_NUMBER}"p)
 export user=$(grep -E "^#vxtls " "/usr/local/etc/xray/config.json" | cut -d ' ' -f 2 | sed -n "${CLIENT_NUMBER}"p)
 export exp=$(grep -E "^#vxtls " "/usr/local/etc/xray/config.json" | cut -d ' ' -f 3 | sed -n "${CLIENT_NUMBER}"p)
-export now=$(date +%d-%m-%Y")
+export now=$(date +%d-%m-%Y)
 export d1=$(date -d "$exp" +%s)
 export d2=$(date -d "$now" +%s)
 export exp2=$(( (d1 - d2) / 86400 ))
 export exp3=$(($exp2 + $masaaktif))
-export exp4=`date -d "$exp3 days" +%d-%m-%Y"`
+export exp4=`date -d "$exp3 days" +"%d-%m-%Y"`
 
 sed -i "s/#vxtls $user $exp $harini $uuid/#vxtls $user $exp4 $harini $uuid/g" /usr/local/etc/xray/config.json
 
@@ -836,7 +836,7 @@ echo -e "\e[$line•────────────────•\e[m"
 echo -e "Link ${YLW}UMOBILE${NC}     : ${vlesslink3}"
 echo -e "\e[$line•────────────────•\e[m"
 echo -e "Link ${BLU}BeOne${NC}       : ${vlesslink4}"
-echo -e "\e[$line•────────────────•\e[m
+echo -e "\e[$line•────────────────•\e[m"
 echo -e "\e[$line Direct QRcode\e[m"
 qrencode -t ansiutf8 "vless://${uuid}@${domain}:$xtls?security=xtls&encryption=none&headerType=none&type=tcp&flow=xtls-rprx-direct&sni=bug.com#${user}"
 echo -e "\e[$line Splice QRcode\e[m"
