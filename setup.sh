@@ -132,6 +132,7 @@ clear
 echo ""
 echo -e "\e[0;32mREADY FOR INSTALLATION SCRIPT...\e[0m"
 sleep 2
+mkdir -p /user
 apt install resolvconf network-manager dnsutils bind9 -y
 cat > /etc/systemd/resolved.conf << END
 [Resolve]
