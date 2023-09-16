@@ -187,5 +187,5 @@ echo "Custom DNS" > /user/current
 echo -e "${YB}Setup Completed${NC}"
 sleep 1.5 ; clear ; changer ;;
 10) clear ; menu ;;
-*) echo -e "${YB}Please enter an correct number${NC}" ; sleep 1 ; changer ;;
+*) echo -e "${YB}Please enter an correct number${NC}" ; sleep 1 ; system ;;
 esac
